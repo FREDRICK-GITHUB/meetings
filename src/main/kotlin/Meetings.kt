@@ -1,9 +1,12 @@
 import java.lang.IllegalArgumentException
 
-class Meeting {
+class Meeting(val meetingName: String, var location: Location =  Location("An address")) {
+
     internal val logger = Logger()
 
-    var meetingName: String = ""
+
+
+//    val meetingName: String
     fun addParticipant(participant: Participant) {
         if (verifyParticipant(participant))
             println("Added: ${participant.participantName}")
@@ -19,21 +22,7 @@ class Meeting {
     }
 }
 
-class Participant {
-    var name: Name = Name()
-    var email = ""
+class Location(val address: String){
 
-    val participantName: String
-        get() = name.name
-
-    val canonicalEmail: String
-        get() = email.toUpperCase()
 }
 
-class Name {
-    var name: String = ""
-        set(value: String) {
-            if (value.isNullOrBlank()) throw IllegalArgumentException()
-            field = value
-        }
-}
